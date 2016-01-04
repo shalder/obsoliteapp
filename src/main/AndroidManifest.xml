@@ -56,7 +56,8 @@
         </activity>
         <activity
             android:name=".activities.MessagingActivity"
-            android:label="@string/title_activity_messaging" >
+            android:label="@string/title_activity_messaging"
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".activities.settings.SettingsActivity"

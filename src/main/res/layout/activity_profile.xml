@@ -176,10 +176,10 @@
     <Button
         android:id="@+id/profile_save_button"
         android:layout_width="100dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:background="@drawable/lightgreywhite_button_background"
         android:text="@string/save_txt"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/header"

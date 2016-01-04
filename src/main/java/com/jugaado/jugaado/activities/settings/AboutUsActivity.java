@@ -16,5 +16,6 @@ public class AboutUsActivity extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
+        setTitle(R.string.about_us_text);
     }
 }
