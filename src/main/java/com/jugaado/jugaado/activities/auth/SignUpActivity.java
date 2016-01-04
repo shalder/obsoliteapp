@@ -62,6 +62,7 @@ public class SignUpActivity extends BaseActivity {
     private View.OnClickListener SIGNUP_CLICK_LISTENER = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            String EMAIL_REGEX ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
             ArrayList<String> errors = new ArrayList<>();
             if ("".equals(nameEditText.getText().toString())){
                 errors.add("Please provide your name");
@@ -71,7 +72,7 @@ public class SignUpActivity extends BaseActivity {
                 errors.add("Please provide your username");
             }
 
-            if ("".equals(emailEditText.getText().toString()) || !emailEditText.getText().toString().contains(".") || !emailEditText.getText().toString().contains("@")){
+            if (!emailEditText.getText().toString().matches(EMAIL_REGEX)){
                 errors.add("Please provide your valid email");
             }
 

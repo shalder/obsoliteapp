@@ -16,20 +16,18 @@
         android:layout_marginTop="30dp"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:layout_below="@+id/Jugaado"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout2">
+        android:id="@+id/linearLayout2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
         <EditText
             android:id="@+id/login_user_name"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="264dp"
+            android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:hint="@string/placeholder_username"
             android:textColorHint="@color/black"
@@ -42,8 +40,8 @@
         <EditText
             android:layout_marginTop="30dp"
             android:id="@+id/login_password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="268dp"
+            android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:hint="@string/placeholder_password"
             android:inputType="textPassword"
@@ -83,7 +81,7 @@
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        >
+        android:id="@+id/linearLayout">
 
     <TextView
         android:layout_width="wrap_content"

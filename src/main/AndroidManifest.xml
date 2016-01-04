@@ -74,6 +74,12 @@
             android:parentActivityName=".activities.auth.LoginActivity">
         </activity>
 
+        <activity
+            android:name=".activities.settings.AboutUsActivity"
+            android:label="@string/title_about_us"
+            android:parentActivityName=".activities.auth.LoginActivity">
+        </activity>
+
         <!-- Google Analytics -->
         <receiver android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
             android:enabled="true"

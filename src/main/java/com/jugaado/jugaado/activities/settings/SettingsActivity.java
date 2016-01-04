@@ -43,9 +43,9 @@ public class SettingsActivity extends BaseActivity {
         findViewById(R.id.settings_about_text_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_aboutus);
-                //Intent intent=new Intent(SettingsActivity.this,AboutUsActivity.class);
-                //startActivity(intent);
+                //setContentView(R.layout.activity_aboutus);
+                Intent intent=new Intent(SettingsActivity.this,AboutUsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -58,13 +58,6 @@ public class SettingsActivity extends BaseActivity {
             }
         });
 
-        findViewById(R.id.settings_profile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(SettingsActivity.this,ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
 
         findViewById(R.id.settings_logout).setOnClickListener(new View.OnClickListener() {
             @Override

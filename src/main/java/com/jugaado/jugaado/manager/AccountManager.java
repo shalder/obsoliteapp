@@ -372,10 +372,12 @@ public class AccountManager {
                         public void run() {
                             if(e.getMessage().equals("XMPPError: conflict - cancel"))
                                 callback.onError(null, "username is already exist");
-                            else if (e.getMessage().contains("XMPPError"))
-                                callback.onError(null,e.getMessage());
-                            else
-                                callback.onError(null,R.string.);
+                            else if (e.getMessage().contains("XMPPError")) {
+                                callback.onError(null, e.getMessage());
+                            }
+                            else {
+                                callback.onError(null, "Experiencing ServerSide Error, Try after some time"); //R.string.serverside_error
+                            }
                         }
                     });
                 }

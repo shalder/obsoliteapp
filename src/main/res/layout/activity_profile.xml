@@ -19,6 +19,8 @@
             android:layout_height="wrap_content"
             android:text="DETAILS"
             android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
             />
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,6 +59,7 @@
             android:layout_height="wrap_content"
             android:text="ADDRESS"
             android:textStyle="bold"
+            android:textColor="@color/black"
             />
 
         <TextView
@@ -172,15 +175,16 @@
 
     <Button
         android:id="@+id/profile_save_button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
         android:background="@drawable/lightgreywhite_button_background"
-        android:text="SAVE"
+        android:text="@string/save_txt"
         android:textSize="20sp"
         android:textColor="@color/black"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="55dp"/>
+        android:layout_above="@+id/header"
+        android:layout_marginBottom="10dp"
+        android:textAllCaps="false"/>
     <include
         layout="@layout/header"
         android:id="@+id/header"

@@ -21,7 +21,7 @@
             android:id="@+id/settings_about_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="About"
+            android:text="@string/about_us_text"
             style="@style/SettingsTextView"
             android:background="@color/lightgreywhite"
             />
@@ -38,7 +38,7 @@
             android:id="@+id/settings_terms_conditions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Terms &amp; Conditions"
+            android:text="@string/termsncondition_title"
             style="@style/SettingsTextView"
             android:background="@color/lightgreywhite"
             />
@@ -50,14 +50,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             />
-        <TextView
-            android:id="@+id/settings_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/action_profile"
-            style="@style/SettingsTextView"
-            android:background="@color/lightgreywhite"
-            />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -70,17 +63,16 @@
 
     <Button
         android:id="@+id/settings_logout"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Logout"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="@string/text_logout"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:background="@drawable/lightgreywhite_button_background"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="55dp"
         android:layout_above="@+id/header"
-        />
+        android:layout_marginBottom="10dp"/>
     <include
         layout="@layout/header"
         android:id="@+id/header"

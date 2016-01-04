@@ -14,35 +14,33 @@
         android:background="@color/transparent"
         android:id="@+id/chat_button"
         android:onClick="onClickChat_direct"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/imageView5"
         android:layout_marginLeft="50dp"
         android:layout_marginStart="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
         android:layout_alignParentLeft="false"
         android:layout_alignParentRight="false"
-        android:layout_alignParentEnd="false" />
+        android:layout_alignParentEnd="false"
+        android:scaleType="fitEnd"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:paddingRight="30dp"
+        android:paddingBottom="5dp"/>
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:src="@drawable/cat_icon"
+        android:src="@drawable/category_icon"
         android:background="@color/transparent"
         android:id="@+id/category_button"
         android:onClick="onClickChat_category"
-        android:layout_alignTop="@+id/chat_button"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="false"
         android:layout_alignParentEnd="false"
-        android:layout_marginBottom="10dp"
         android:layout_toLeftOf="@+id/imageView5"
-        android:layout_marginRight="40dp"/>
+        android:layout_marginRight="40dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="30dp"/>
 
     <ImageView
         android:layout_width="wrap_content"

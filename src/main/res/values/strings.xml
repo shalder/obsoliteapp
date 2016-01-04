@@ -8,7 +8,7 @@
     <string name="placeholder_password">Password</string>
     <string name="placeholder_login">Log In</string>
     <string name="text_login">Log In</string>
-    <string name="text_logout">Log out</string>
+    <string name="text_logout">Log Out</string>
     <string name="text_settings">Settings</string>
     <string name="text_signup">Sign Up</string>
     <string name="title_activity_sign_up">Sign Up</string>
@@ -18,23 +18,25 @@
     <string name="placeholder_phone_number">Phone Number</string>
     <string name="placeholder_sign_up">Sign Up</string>
     <string name="title_activity_messaging">Chat</string>
-
+    <string name="save_txt">Save</string>
     <string name="NO_INTERNET_CONNECTION_ERROR">Unable to connect to Jugaado. Please check your internet connection</string>
     <string name="SHARED_PREFERENCES_KEY">Android_Jugaado_Haha</string>
     <string name="JUGAADO_USER_USERNAME_KEY">JUGAADO_USER_USERNAME</string>
     <string name="JUGAADO_USER_PASSWORD_KEY">JUGAADO_USER_PWD</string>
     <string name="title_activity_base">Base Activity</string>
     <string name="title_activity_profile">Profile</string>
+    <string name="title_about_us">About Us</string>
     <string name="action_profile">Profile</string>
     <string name="edit">Edit</string>
     <string name="title_activity_category">Category</string>
     <string name="username_txt_forgetpassword">To Retrieve Your Password, Enter Your UserName</string>
     <string name="continue_button">Continue</string>
     <string name="title_activity_forgetPassword">Forget Password</string>
+    <string name="termsncondition_title">Terms &amp; Condition</string>
     <string name="termsncondition_txt">TERMS of Services</string>
     <string name="termsncondition_description">Please read the following terms and conditions carefully before registering, accessing, browsing, downloading or using the Site (defined below). By accessing or using the Site or by using the Service (defined below), you agree to be bound by these terms and conditions set forth below including any additional guidelines and future modifications. If at any time you do not agree to these terms and conditions or do not wish to be bound by these terms and conditions, you may not access or use the site and immediately terminate your use of the services.</string>
     <string name="agreement_to_tnc">cscs</string>
     <string name="about_us_text">About Us</string>
-    <string name="about_us_descrp">.......</string>
-    <string name="SYSTEM_ERR"></string>
+    <string name="about_us_descrp">The team at Jugaado™ will take all your requests, and no matter how petty or important, we will give our best to help you in no time. All you have to do is send us a message stating your query.We are here to meet your requirements.You can trust our services.</string>
+    <string name="serverside_error">Experiencing ServerSide Error, Try after some time</string>
 </resources>
