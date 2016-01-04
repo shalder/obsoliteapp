@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/whitesmoke"
+    tools:context=".activities.profile.ProfileActivity">
+    <LinearLayout
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DETAILS"
+            android:textStyle="bold"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/profile_margin_left_sub"
+            >
+            <TextView
+                android:id="@+id/profile_name_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/profile_min_detail_height_sub"
+                android:textSize="18dp"
+                />
+            <EditText
+                android:id="@+id/profile_name_edit_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Your Name"
+                android:minHeight="@dimen/profile_min_detail_height_sub"
+                android:textSize="18dp"
+                android:background="@color/lightgreywhite" />
+        </RelativeLayout>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADDRESS"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/profile_no_address_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="No address yet! Edit now to set your address"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:id="@+id/profile_address_container"
+            android:layout_marginLeft="@dimen/profile_margin_left_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/profile_street_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/profile_min_detail_height_sub"
+                    android:textSize="18dp"
+                    />
+                <EditText
+                    android:id="@+id/profile_street_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:hint="Street Name"
+                    android:minHeight="@dimen/profile_min_detail_height_sub"
+                    android:textSize="18dp"
+                    android:background="@color/lightgreywhite"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/profile_street_2_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/profile_min_detail_height_sub"
+                    android:textSize="18dp"
+                    />
+                <EditText
+                    android:id="@+id/profile_street_2_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:hint="Street Name (Optional)"
+                    android:minHeight="@dimen/profile_min_detail_height_sub"
+                    android:textSize="18dp"
+                    android:background="@color/lightgreywhite"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/profile_city_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/profile_min_detail_height_sub"
+                    android:textSize="18dp"
+                    />
+                <EditText
+                    android:id="@+id/profile_city_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:minHeight="@dimen/profile_min_detail_height_sub"
+                    android:hint="City"
+                    android:textSize="18dp"
+                    android:background="@color/lightgreywhite"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/profile_pincode_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/profile_min_detail_height_sub"
+                    android:textSize="18dp"
+                    />
+                <EditText
+                    android:id="@+id/profile_pincode_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress"
+                    android:hint="Pincode"
+                    android:minHeight="@dimen/profile_min_detail_height_sub"
+                    android:textSize="18dp"
+                    android:background="@color/lightgreywhite"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/profile_save_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/lightgreywhite_button_background"
+        android:text="SAVE"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"/>
+    <include
+        layout="@layout/header"
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

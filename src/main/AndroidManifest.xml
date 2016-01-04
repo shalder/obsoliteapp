@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jugaado.jugaado" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".application.JugaadoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <activity
+            android:name=".activities.settings.TermsNConditionActivity"
+            android:label="Terms n Condition">
+        </activity>
+        <activity
+            android:name=".activities.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.CategoryActivity"
+            android:label="@string/title_activity_category" >
+        </activity>
+        <activity
+            android:name=".activities.ForgetPasswordActivity"
+            android:label="@string/title_activity_forgetPassword"
+            android:parentActivityName=".activities.auth.LoginActivity">
+        </activity>
+        <activity
+            android:name=".unused.ThreadListActivity"
+            android:label="@string/title_thread_list" >
+        </activity>
+        <activity
+            android:name=".unused.ThreadDetailActivity"
+            android:label="@string/title_thread_detail"
+            android:parentActivityName=".unused.ThreadListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".unused.ThreadListActivity" />
+        </activity>
+        <activity
+            android:name=".activities.auth.LoginActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activities.auth.SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:parentActivityName=".activities.auth.LoginActivity" >
+        </activity>
+        <activity
+            android:name=".activities.MessagingActivity"
+            android:label="@string/title_activity_messaging" >
+        </activity>
+        <activity
+            android:name=".activities.settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".activities.auth.LoginActivity">
+        </activity>
+        <activity
+            android:name=".activities.base.BaseActivity"
+            android:label="@string/title_activity_base" >
+        </activity>
+
+        <activity
+            android:name=".activities.profile.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".activities.auth.LoginActivity">
+        </activity>
+
+        <!-- Google Analytics -->
+        <receiver android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+        <receiver android:name="com.google.android.gms.analytics.AnalyticsReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.analytics.AnalyticsService"
+            android:enabled="true"
+            android:exported="false"/>
+        <service android:name="com.google.android.gms.analytics.AnalyticsService"
+            android:enabled="true"
+            android:exported="false"/>
+    </application>
+
+</manifest>

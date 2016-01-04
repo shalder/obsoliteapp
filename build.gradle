@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.jugaado.jugaado"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    android {
+        packagingOptions {
+            exclude 'META-INF/LICENSE.txt'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:support-v4:23.0.1'
+    compile 'org.igniterealtime.smack:smack-android-extensions:4.1.0'
+    compile 'org.igniterealtime.smack:smack-tcp:4.1.0'
+    compile 'com.google.android.gms:play-services-analytics:8.1.0'
+    compile files('libs/httpclient-4.2.3.jar')
+    compile files('libs/httpcore-4.0.1.jar')
+}

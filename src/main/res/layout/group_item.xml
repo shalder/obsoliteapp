@@ -1,0 +1,14 @@
+<CheckedTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jugaado.jugaado.activities.settings.TermsNConditionActivity"
+    android:id="@+id/group_name"
+    android:layout_width="wrap_content"
+    android:layout_height="60dp"
+    android:layout_marginLeft="5dp"
+    android:gravity="center_vertical"
+    android:textSize="20sp"
+    android:textColor="@color/black"
+    android:padding="10dp"
+    android:background="@color/lightgreywhite"
+    android:textStyle="bold" />

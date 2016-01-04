@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jugaado.jugaado.activities.MessagingActivity"
+    android:background="@color/whitesmoke">
+
+    <RelativeLayout
+        android:id="@+id/message_input_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+        <Button
+            android:id="@+id/message_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            />
+        <EditText
+            android:id="@+id/message_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/message_send_button"
+            android:layout_toStartOf="@+id/message_send_button"
+            android:inputType="textCapSentences"
+            android:hint="Hmmm...."
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/message_input_container">
+        <include layout="@layout/header"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"/>
+        <ListView
+            android:id="@+id/messages_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:background="@drawable/message_background_repeat"
+            android:layout_below="@+id/header"
+            />
+
+        <LinearLayout
+            android:id="@+id/messages_empty_message_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            >
+            <TextView
+                android:id="@+id/chat_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="50dp"
+                android:text="Start a conversation now! What would you like to know ?"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

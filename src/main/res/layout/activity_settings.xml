@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/whitesmoke"
+    tools:context=".activities.settings.SettingsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/settings_logout"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        >
+        <TextView
+            android:id="@+id/settings_about_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About"
+            style="@style/SettingsTextView"
+            android:background="@color/lightgreywhite"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            />
+
+        <TextView
+            android:id="@+id/settings_terms_conditions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terms &amp; Conditions"
+            style="@style/SettingsTextView"
+            android:background="@color/lightgreywhite"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            />
+        <TextView
+            android:id="@+id/settings_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_profile"
+            style="@style/SettingsTextView"
+            android:background="@color/lightgreywhite"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            />
+    </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/settings_logout"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:background="@drawable/lightgreywhite_button_background"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"
+        android:layout_above="@+id/header"
+        />
+    <include
+        layout="@layout/header"
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/header"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/lightgreywhite" >
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:src="@drawable/chat_icon"
+        android:background="@color/transparent"
+        android:id="@+id/chat_button"
+        android:onClick="onClickChat_direct"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/imageView5"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:src="@drawable/cat_icon"
+        android:background="@color/transparent"
+        android:id="@+id/category_button"
+        android:onClick="onClickChat_category"
+        android:layout_alignTop="@+id/chat_button"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginBottom="10dp"
+        android:layout_toLeftOf="@+id/imageView5"
+        android:layout_marginRight="40dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:src="@drawable/cat_chat_seperator"
+        android:id="@+id/imageView5"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

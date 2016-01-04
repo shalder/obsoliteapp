@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayoutParent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/whitesmoke">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingBottom="50dp" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Hi xyz,get all the information you want"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:id="@+id/textView6"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"/>
+            <GridLayout
+                android:id="@+id/gridlayout"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:rowCount="4"
+                android:columnCount="2"
+                android:paddingBottom="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:id="@+id/imageView"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:src="@drawable/shopping"
+                    android:onClick="onClickShopping"
+                    android:background="@color/transparent"/>
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:id="@+id/imageView2"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:src="@drawable/consult"
+                    android:layout_below="@+id/ImageView"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onClickConsultation"
+                    android:background="@color/transparent"/>
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:id="@+id/imageView4"
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:src="@drawable/travel"
+                    android:layout_below="@+id/ImageView2"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onClickTravel"
+                    android:background="@color/transparent"/>
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:id="@+id/imageView5"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:src="@drawable/weather"
+                    android:layout_below="@+id/ImageView3"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onClickWeather"
+                    android:layout_gravity="right"
+                    android:background="@color/transparent"/>
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:id="@+id/imageView6"
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:src="@drawable/delivery"
+                    android:layout_below="@+id/imageView4"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onClickDelivery"
+                    android:background="@color/transparent"/>
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:id="@+id/imageView7"
+                    android:layout_row="3"
+                    android:layout_column="1"
+                    android:src="@drawable/others"
+                    android:layout_below="@+id/ImageView5"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onClickOthers"
+                    android:layout_gravity="right"
+                    android:background="@color/transparent"/>
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:id="@+id/imageView1"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:src="@drawable/food"
+                    android:onClick="onClickFood"
+                    android:layout_gravity="right"
+                    android:background="@color/transparent"/>
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:id="@+id/imageView3"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:src="@drawable/services"
+                    android:layout_below="@+id/ImageView1"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onClickServices"
+                    android:layout_gravity="right"
+                    android:background="@color/transparent"/>
+
+            </GridLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <include
+    layout="@layout/header"/>
+
+
+
+
+</RelativeLayout>
