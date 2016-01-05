@@ -372,6 +372,9 @@ public class AccountManager {
                         public void run() {
                             if(e.getMessage().equals("XMPPError: conflict - cancel"))
                                 callback.onError(null, "username is already exist");
+                            else if (e.getMessage().equals("XMPPError: jid-malformed - modify")){
+                                callback.onError(null, "Please check your username");
+                            }
                             else if (e.getMessage().contains("XMPPError")) {
                                 callback.onError(null, e.getMessage());
                             }

@@ -63,6 +63,7 @@ public class SignUpActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             String EMAIL_REGEX ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+            String USERNAME_REGEX ="[a-zA-Z0-9 ]*";
             ArrayList<String> errors = new ArrayList<>();
             if ("".equals(nameEditText.getText().toString())){
                 errors.add("Please provide your name");
@@ -70,6 +71,10 @@ public class SignUpActivity extends BaseActivity {
 
             if ("".equals(usernameEditText.getText().toString())){
                 errors.add("Please provide your username");
+            }
+
+            if(!usernameEditText.getText().toString().matches(USERNAME_REGEX)){
+                errors.add("Please provide username with no special character");
             }
 
             if (!emailEditText.getText().toString().matches(EMAIL_REGEX)){

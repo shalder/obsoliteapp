@@ -1,6 +1,8 @@
 package com.jugaado.jugaado.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -121,29 +123,41 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
         AccountManager.getSharedInstance().addRefreshListener(this);
         loadMessages();
     }
-
+    public boolean isInternetAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
     private void sendMessage(String text) {
-        text = text.trim();
-        final Message message = new Message(text);
-        messagingAdapter.notifyDataSetChanged();
-        messageThread.sendMessage(this, message, new EventCallback() {
-            @Override
-            public void onSuccess(JSONObject js) {
-                Log.d(TAG, "Successfully sent message :" + message.getMessage());
-            }
+        if(isInternetAvailable()) {
+            text = text.trim();
+            final Message message = new Message(text);
+            messagingAdapter.notifyDataSetChanged();
+            messageThread.sendMessage(this, message, new EventCallback() {
+                @Override
+                public void onSuccess(JSONObject js) {
+                    Log.d(TAG, "Successfully sent message :" + message.getMessage());
+                }
 
-            @Override
-            public void onFailure(String message) {
-                Helper.showError(message, MessagingActivity.this);
-            }
+                @Override
+                public void onFailure(String message) {
+                    Helper.showError(message, MessagingActivity.this);
+                }
 
-            @Override
-            public void onError(JSONObject js, String message) {
-                Log.d(TAG, "Got error: " + message);
-                Helper.showError(message, MessagingActivity.this);
-            }
-        });
-        messagesListView.setSelection(this.messageThread.getCount());
+                @Override
+                public void onError(JSONObject js, String message) {
+                    Log.d(TAG, "Got error: " + message);
+                    Helper.showError(message, MessagingActivity.this);
+                }
+            });
+            messagesListView.setSelection(this.messageThread.getCount());
+        }
+        else{
+            MessagingActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                        showError("Unable to connect to Jugaado. Please check your internet connection");
+                }
+            });
+        }
     }
 
     @Override
