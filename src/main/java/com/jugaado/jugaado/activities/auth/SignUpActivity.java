@@ -51,53 +51,41 @@ public class SignUpActivity extends BaseActivity {
         usernameEditText = (EditText) findViewById(R.id.signup_username_edit_text);
         emailEditText = (EditText) findViewById(R.id.signup_email_edittext);
         passwordEditText = (EditText) findViewById(R.id.signup_password_edittext);
-
-
-
-
         signUpButton = (Button) findViewById(R.id.signup_button);
         signUpButton.setOnClickListener(SIGNUP_CLICK_LISTENER);
     }
+    private void signUpValidation(){
+        String EMAIL_REGEX ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        String USERNAME_REGEX ="[a-zA-Z0-9 ]*";
+        ArrayList<String> errors = new ArrayList<>();
+        if ("".equals(nameEditText.getText().toString())){
+            errors.add("Please provide your name");
+        }
 
+        if ("".equals(usernameEditText.getText().toString())){
+            errors.add("Please provide your username");
+        }
+
+        if(!usernameEditText.getText().toString().matches(USERNAME_REGEX)){
+            errors.add("Please provide username with no special character");
+        }
+
+        if (!emailEditText.getText().toString().matches(EMAIL_REGEX)){
+            errors.add("Please provide your valid email");
+        }
+
+        if ("".equals(passwordEditText.getText().toString())){
+            errors.add("Please select a password for authenticity");
+        }
+        if (errors.size() > 0){
+            showError(errors);
+            return;
+        }
+    }
     private View.OnClickListener SIGNUP_CLICK_LISTENER = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String EMAIL_REGEX ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-            String USERNAME_REGEX ="[a-zA-Z0-9 ]*";
-            ArrayList<String> errors = new ArrayList<>();
-            if ("".equals(nameEditText.getText().toString())){
-                errors.add("Please provide your name");
-            }
-
-            if ("".equals(usernameEditText.getText().toString())){
-                errors.add("Please provide your username");
-            }
-
-            if(!usernameEditText.getText().toString().matches(USERNAME_REGEX)){
-                errors.add("Please provide username with no special character");
-            }
-
-            if (!emailEditText.getText().toString().matches(EMAIL_REGEX)){
-                errors.add("Please provide your valid email");
-            }
-
-            if ("".equals(passwordEditText.getText().toString())){
-                errors.add("Please select a password for authenticity");
-            }
-
-            /*if ("".equals(phoneNumberEditText.getText().toString()) || phoneNumberEditText.getText().toString().length() != 10){
-                errors.add("Please provide a 10 digit phone number");
-            }
-
-            if (birthDate == null) {
-                errors.add("Please provide your birth date");
-            }*/
-
-            if (errors.size() > 0){
-                showError(errors);
-                return;
-            }
-
+            signUpValidation();
             showLoading();
             AccountManager.getSharedInstance().signup(SignUpActivity.this,
                     nameEditText.getText().toString(),

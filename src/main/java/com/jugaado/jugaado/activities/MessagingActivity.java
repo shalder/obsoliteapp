@@ -40,7 +40,7 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
     private Button sendButton;
     private LinearLayout messageEmptyContainer;
     private TextView chat_description;
-    String chatcategory="test";
+    String chatcategory;
 
 
 
@@ -161,7 +161,7 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
     }
 
     @Override
-    public void shouldUpdateMessageThread(int position, int thread_id) {
+    public void updateMessageThread(int position, int thread_id) {
         loadMessages();
     }
 

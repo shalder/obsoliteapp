@@ -33,7 +33,7 @@ public class MessageThread {
     }
 
     public Message lastMessage(){
-        if (messages != null && messages.size() > 0)
+        if ( !messages.isEmpty())
             return messages.get(messages.size() - 1);
         return null;
     }
@@ -45,7 +45,6 @@ public class MessageThread {
 
     public void receiveMessage(Message message){
         messages.add(message);
-
     }
 
     public int getThread_id() {

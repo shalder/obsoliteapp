@@ -78,7 +78,7 @@ public class ForgetPasswordActivity extends BaseActivity {
                             //Your code goes here
                             username_edittext = (EditText) findViewById(R.id.editText);
                             username = username_edittext.getText().toString();
-                            forgetPasswordURL = Helper.forgetpassword_api + username;
+                            forgetPasswordURL = Helper.FORGET_PWD_URL + username;
                             Log.d(TAG, forgetPasswordURL);
                             //URL url = new URL(forgetPasswordURL);
                             HttpClient httpclient;

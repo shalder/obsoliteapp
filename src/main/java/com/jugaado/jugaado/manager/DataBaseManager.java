@@ -72,7 +72,7 @@ public class DataBaseManager extends SQLiteOpenHelper {
         Log.d(TAG, "Add msg - " + message.getMessage());
         ContentValues values = new ContentValues();
         values.put(MESSAGE_MESSAGE, message.getMessage()); // Contact Name
-        values.put(MESSAGE_WAY, message.getMessage_way() == Message.MESSAGE_WAY.MESSAGE_WAY_IN ? "1" : "0"); // Contact Phone Number
+        values.put(MESSAGE_WAY, message.getMessage_way() == Message.message_way.MESSAGE_WAY_IN ? "1" : "0"); // Contact Phone Number
         //SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy  HH:mm:ss");
         //final String currentDateandTime = sdf.format(new Date());
         values.put(MESSAGE_DATENTIME,message.getDATEnTIME());

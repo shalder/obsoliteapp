@@ -42,7 +42,6 @@ package com.jugaado.jugaado.activities;
         import java.lang.*;
 
 public class CategoryActivity extends BaseActivity {
-    ImageView image1;
     String category = "Category_Test";
     public static final String TAG = "Category Activity";
 
@@ -123,7 +122,6 @@ public class CategoryActivity extends BaseActivity {
     }
 
     public void onClickOthers(View v) {
-        //image1.setImageResource(R.drawable.learning_hobbies_edit);
         category = "others";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);

@@ -89,10 +89,10 @@ public class AccountManager {
                             xmpptcpConnection.disconnect();
                         }
                         xmpptcpConnectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-                                .setServiceName(Helper.host)
-                                .setHost(Helper.host)
-                                .setPort(Helper.port)
-                                .setUsernameAndPassword(Helper.host_user_name, Helper.host_pwd)
+                                .setServiceName(Helper.HOST)
+                                .setHost(Helper.HOST)
+                                .setPort(Helper.PORT)
+                                .setUsernameAndPassword(Helper.HOST_USER_NAME, Helper.HOST_PWD)
                                 .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
                                 .setSendPresence(true)
                                 .build();
@@ -219,7 +219,7 @@ public class AccountManager {
                         mainThread.receiveMessage(add_message);
                         dataBaseManager.addMessage(add_message);
                         for (RefreshListener listener : refreshListeners) {
-                            listener.shouldUpdateMessageThread(0, 0);
+                            listener.updateMessageThread(0, 0);
                         }
                     }
                 });
@@ -312,7 +312,7 @@ public class AccountManager {
 
                     SASLAuthentication.unBlacklistSASLMechanism("PLAIN");
                     SASLAuthentication.blacklistSASLMechanism("DIGEST-MD5");
-                    xmpptcpConnection.login(Helper.host_user_name, Helper.host_pwd);
+                    xmpptcpConnection.login(Helper.HOST_USER_NAME, Helper.HOST_PWD);
 
                     org.jivesoftware.smackx.iqregister.AccountManager accountManager = org.jivesoftware.smackx.iqregister.AccountManager.getInstance(xmpptcpConnection);
 
@@ -394,7 +394,7 @@ public class AccountManager {
             @Override
             public void run() {
                 try {
-                    Message newMessage = new Message("fdsa@"+Helper.host, message.getMessage());
+                    Message newMessage = new Message("fdsa@"+Helper.HOST, message.getMessage());
                     chat.sendMessage(newMessage);
 
                     SimpleDateFormat sdfR = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
