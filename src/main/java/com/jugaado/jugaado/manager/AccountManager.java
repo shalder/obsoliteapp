@@ -200,7 +200,7 @@ public class AccountManager {
 
     private void loadChatManager(final Activity activity){
         chatManager = ChatManager.getInstanceFor(xmpptcpConnection);
-        chat = chatManager.createChat("fdsa@openfire", new ChatMessageListener() {
+        chat = chatManager.createChat("master@openfire", new ChatMessageListener() {
             @Override
             public void processMessage(Chat chat, final Message message) {
                 Log.d(TAG, "Got Some Message: " + message);
@@ -253,15 +253,14 @@ public class AccountManager {
             dataBaseManager.setUserId(user_id);
 
             MessageThread messageThread = new MessageThread(dataBaseManager.getAllMessages());
-            //userThreads.set(0, getNewUserThread(user_id)); // pratyay needs to do something here
 
             userThreads.add(messageThread);
 
-
+            loadChatManager(activity);
 
             // Also create AppUser
             loadUser(xmpptcpConnection);
-            loadChatManager(activity);
+
             return true;
         } catch (XMPPException | SmackException | IOException e) {
             e.printStackTrace();
@@ -394,7 +393,7 @@ public class AccountManager {
             @Override
             public void run() {
                 try {
-                    Message newMessage = new Message("fdsa@"+Helper.HOST, message.getMessage());
+                    Message newMessage = new Message("master@"+Helper.HOST, message.getMessage());
                     chat.sendMessage(newMessage);
 
                     SimpleDateFormat sdfR = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");

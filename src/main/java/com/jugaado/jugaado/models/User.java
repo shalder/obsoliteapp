@@ -46,27 +46,30 @@ public class User {
                 "\n" + address.toString() + "" +
                 "\n" + "}";
     }
-    public void saveUserDetails(String arg){
-        if (arg == null || arg.trim().equals("")) {
-            arg = "";
+    public String formatName(String name_fragment){
+        if (name_fragment == null) {
+            name_fragment = "";
         } else {
-            arg += " ";
+            name_fragment = name_fragment.trim();
         }
+        return name_fragment;
     }
+
     public User(VCard vCard) {
         Log.d(TAG, "VCard " + vCard.toString());
 
         String firstName = vCard.getFirstName();
-        saveUserDetails(firstName);
+        firstName = formatName(firstName) + " ";
 
         String middleName = vCard.getMiddleName();
-        saveUserDetails(middleName);
+        middleName = formatName(middleName) + " ";
 
-        String lastName = vCard.getLastName();//saveUserDetails is not required for lastname
+        String lastName = vCard.getLastName();
+        lastName = formatName(lastName);
 
         this.full_name = firstName + middleName + lastName;
         this.email = vCard.getEmailHome();
-        this.user_name = ""; //TODO: Need to the fix the user name here
+        this.user_name = "";
         this.address = new Address(vCard);
     }
 

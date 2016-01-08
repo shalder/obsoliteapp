@@ -2,6 +2,7 @@ package com.jugaado.jugaado.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jugaado.jugaado.R;
@@ -55,6 +57,9 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
 
         ImageButton buttonChat=(ImageButton)findViewById(R.id.chat_button);
         buttonChat.setEnabled(false);
+
+        RelativeLayout chat_icon_layout = (RelativeLayout)findViewById(R.id.chat_icon_layout);
+        chat_icon_layout.setBackgroundColor(R.color.gainsboro);
 
 
         chatcategory = getIntent().getStringExtra("chat_CATEGORY");

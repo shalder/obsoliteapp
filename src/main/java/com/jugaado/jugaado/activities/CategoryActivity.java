@@ -21,6 +21,7 @@ package com.jugaado.jugaado.activities;
         import android.widget.BaseAdapter;
         import android.widget.ImageButton;
         import android.widget.ImageView;
+        import android.widget.RelativeLayout;
         import android.widget.TextView;
 
         import com.jugaado.jugaado.R;
@@ -69,6 +70,9 @@ public class CategoryActivity extends BaseActivity {
         ImageButton buttonCategory = (ImageButton) findViewById(R.id.category_button);
         buttonCategory.setEnabled(false);
 
+        RelativeLayout category_icon_layout = (RelativeLayout)findViewById(R.id.cat_icon_layout);
+        category_icon_layout.setBackgroundColor(R.color.gainsboro);
+
 
         /*image1 = (ImageView) findViewById(R.id.imageView);
 
@@ -109,12 +113,12 @@ public class CategoryActivity extends BaseActivity {
     }
     private void loadUserName(User user) {
         Log.d(TAG, "Main User is " + mainUser);
-        fullName.setText("Hi "+user.getFull_name().trim()+", get all the information you want");
+        fullName.setText("Hi "+user.getFull_name()+", get all the information you want");
     }
 
     public void onClickShopping(View v) {
         //image1.setImageResource(R.drawable.learning_hobbies_edit);
-        category = "shopping";
+        category = "Welcome to Jugaado! We understand that there is very little to life that is better than shopping. Let us know what you are looking for";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);
         intent.putExtra("chat_CATEGORY", category);
@@ -122,7 +126,7 @@ public class CategoryActivity extends BaseActivity {
     }
 
     public void onClickOthers(View v) {
-        category = "others";
+        category = "Welcome to Jugaado! How may we help you?";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);
         intent.putExtra("chat_CATEGORY", category);
@@ -130,7 +134,7 @@ public class CategoryActivity extends BaseActivity {
     }
 
     public void onClickFood(View v) {
-        category = "food";
+        category = "Welcome to Jugaado! We understand that there is no sincerer love than the love for food. So what are you craving for?";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);
         intent.putExtra("chat_CATEGORY", category);
@@ -138,7 +142,7 @@ public class CategoryActivity extends BaseActivity {
     }
 
     public void onClickServices(View v) {
-        category = "services";
+        category = "Welcome to Jugaado! From a plumbing problem at home, to a tyre problem on the road, we are there to help you out. Just let us know what your problem is.";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);
         intent.putExtra("chat_CATEGORY", category);
@@ -146,7 +150,7 @@ public class CategoryActivity extends BaseActivity {
     }
 
     public void onClickDelivery(View v) {
-        category = "delivery";
+        category = "Welcome to Jugaado! We facilitate any kind of transfer of any kind of items, from a delivery to a transport. Just let us know your query.";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);
         intent.putExtra("chat_CATEGORY", category);
@@ -154,7 +158,7 @@ public class CategoryActivity extends BaseActivity {
     }
 
     public void onClickConsultation(View v) {
-        category = "consultation";
+        category = "Welcome to Jugaado! While we understand that nobody can be wiser than yourself, some times we all need some help. How can we help you today?";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);
         intent.putExtra("chat_CATEGORY", category);
@@ -162,7 +166,7 @@ public class CategoryActivity extends BaseActivity {
     }
 
     public void onClickTravel(View v) {
-        category = "travel";
+        category = "Welcome to Jugaado! Not all those who wander are lost. But if you are, we are here to help you out. Tell us about your concern.";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);
         intent.putExtra("chat_CATEGORY", category);
@@ -170,7 +174,7 @@ public class CategoryActivity extends BaseActivity {
     }
 
     public void onClickWeather(View v) {
-        category = "weather";
+        category = "Welcome to Jugaado! Are you wondering how the skies look today? Just tell us what weather update would you like?";
         //sendCategory(category);
         Intent intent = new Intent(CategoryActivity.this, MessagingActivity.class);
         intent.putExtra("chat_CATEGORY", category);
