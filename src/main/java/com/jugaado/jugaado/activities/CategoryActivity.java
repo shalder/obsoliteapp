@@ -71,7 +71,7 @@ public class CategoryActivity extends BaseActivity {
         buttonCategory.setEnabled(false);
 
         RelativeLayout category_icon_layout = (RelativeLayout)findViewById(R.id.cat_icon_layout);
-        category_icon_layout.setBackgroundColor(R.color.gainsboro);
+        category_icon_layout.setBackgroundResource(R.color.gainsboro);
 
 
         /*image1 = (ImageView) findViewById(R.id.imageView);
@@ -113,7 +113,7 @@ public class CategoryActivity extends BaseActivity {
     }
     private void loadUserName(User user) {
         Log.d(TAG, "Main User is " + mainUser);
-        fullName.setText("Hi "+user.getFull_name()+", get all the information you want");
+        fullName.setText("Hi "+user.getFull_name().trim()+", get all the information you want");
     }
 
     public void onClickShopping(View v) {

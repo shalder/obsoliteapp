@@ -100,7 +100,7 @@ public class ForgetPasswordActivity extends BaseActivity {
 
                             ForgetPasswordActivity.this.runOnUiThread(new Runnable() {
                                 public void run() {
-                                    showError(responseBody);
+                                    showError("We have emailed you the Password Reset Details to  your registered Email ID. \n \n PS - If you do not see the email in your inbox, please check your spam folder. Email questions to admin@jugaado.in");
 
                                 }
                             });

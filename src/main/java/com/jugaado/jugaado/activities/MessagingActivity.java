@@ -59,7 +59,7 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
         buttonChat.setEnabled(false);
 
         RelativeLayout chat_icon_layout = (RelativeLayout)findViewById(R.id.chat_icon_layout);
-        chat_icon_layout.setBackgroundColor(R.color.gainsboro);
+        chat_icon_layout.setBackgroundResource(R.color.gainsboro);
 
 
         chatcategory = getIntent().getStringExtra("chat_CATEGORY");
