@@ -13,4 +13,5 @@
     <color name="lavender">#E6E6FA</color>
     <color name="gainsboro">#DCDCDC</color>
     <color name="lightgreywhite">#EDEDED</color>
+    <color name="titletextcolor">#FFFF00</color>
 </resources>

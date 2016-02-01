@@ -46,7 +46,7 @@ public class SignUpActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        loadOtherCustomActionBar();
         nameEditText = (EditText) findViewById(R.id.signup_name_edittext);
         usernameEditText = (EditText) findViewById(R.id.signup_username_edit_text);
         emailEditText = (EditText) findViewById(R.id.signup_email_edittext);
@@ -54,7 +54,7 @@ public class SignUpActivity extends BaseActivity {
         signUpButton = (Button) findViewById(R.id.signup_button);
         signUpButton.setOnClickListener(SIGNUP_CLICK_LISTENER);
     }
-    private void signUpValidation(){
+    private boolean signUpValidation(){
         String EMAIL_REGEX ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         String USERNAME_REGEX ="[a-zA-Z0-9 ]*";
         ArrayList<String> errors = new ArrayList<>();
@@ -79,37 +79,41 @@ public class SignUpActivity extends BaseActivity {
         }
         if (errors.size() > 0){
             showError(errors);
-            return;
+            return false;
         }
+
+        return true;
     }
     private View.OnClickListener SIGNUP_CLICK_LISTENER = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            signUpValidation();
-            showLoading();
-            AccountManager.getSharedInstance().signup(SignUpActivity.this,
-                    nameEditText.getText().toString(),
-                    usernameEditText.getText().toString(),
-                    passwordEditText.getText().toString(),
-                    emailEditText.getText().toString(), new EventCallback() {
-                        @Override
-                        public void onSuccess(JSONObject js) {
-                            hideLoading();
-                            Intent intent = new Intent(SignUpActivity.this, CategoryActivity.class);
-                            startActivity(intent);
-                            SignUpActivity.this.finish();
-                        }
+            boolean status = signUpValidation();
+            if (status) {
+                showLoading();
+                AccountManager.getSharedInstance().signup(SignUpActivity.this,
+                        nameEditText.getText().toString(),
+                        usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        emailEditText.getText().toString(), new EventCallback() {
+                            @Override
+                            public void onSuccess(JSONObject js) {
+                                hideLoading();
+                                Intent intent = new Intent(SignUpActivity.this, CategoryActivity.class);
+                                startActivity(intent);
+                                SignUpActivity.this.finish();
+                            }
 
-                        @Override
-                        public void onFailure(String message) {
-                            hideLoading(message);
-                        }
+                            @Override
+                            public void onFailure(String message) {
+                                hideLoading(message);
+                            }
 
-                        @Override
-                        public void onError(JSONObject js, String message) {
-                            hideLoading(message);
-                        }
-                    });
+                            @Override
+                            public void onError(JSONObject js, String message) {
+                                hideLoading(message);
+                            }
+                        });
+            }
         }
     };
 }

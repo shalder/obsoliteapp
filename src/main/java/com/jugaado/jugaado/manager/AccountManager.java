@@ -16,14 +16,18 @@ import com.jugaado.jugaado.notifications.RefreshListener;
 import com.jugaado.jugaado.utils.Helper;
 
 import org.jivesoftware.smack.ConnectionConfiguration;
+import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.PacketCollector;
 import org.jivesoftware.smack.SASLAuthentication;
 import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.SmackException;
+import org.jivesoftware.smack.StanzaListener;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.chat.Chat;
 import org.jivesoftware.smack.chat.ChatManager;
+import org.jivesoftware.smack.chat.ChatManagerListener;
 import org.jivesoftware.smack.chat.ChatMessageListener;
+import org.jivesoftware.smack.filter.StanzaFilter;
 import org.jivesoftware.smack.filter.AndFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketIDFilter;
@@ -31,6 +35,7 @@ import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.IQ;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Presence;
+import org.jivesoftware.smack.packet.Stanza;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 import org.jivesoftware.smackx.iqregister.packet.Registration;
@@ -200,33 +205,98 @@ public class AccountManager {
 
     private void loadChatManager(final Activity activity){
         chatManager = ChatManager.getInstanceFor(xmpptcpConnection);
-        chat = chatManager.createChat("master@openfire", new ChatMessageListener() {
-            @Override
-            public void processMessage(Chat chat, final Message message) {
-                Log.d(TAG, "Got Some Message: " + message);
-                if (userThreads.size() == 0) {
-                    return;
-                }
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        MessageThread mainThread = userThreads.get(0);
-                        SimpleDateFormat sdfL = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
-                        final String currentDateandTimeLeft = sdfL.format(new Date());
 
-                        Log.d(TAG,user_id);
-                        com.jugaado.jugaado.models.Message add_message = new com.jugaado.jugaado.models.Message(message,currentDateandTimeLeft,user_id);
-                        mainThread.receiveMessage(add_message);
-                        dataBaseManager.addMessage(add_message);
-                        for (RefreshListener listener : refreshListeners) {
-                            listener.updateMessageThread(0, 0);
+        xmpptcpConnection.addAsyncStanzaListener(new StanzaListener() {
+                                                     @Override
+                                                     public void processPacket(Stanza packet) throws SmackException.NotConnectedException {
+                                                         Log.d(TAG, "Stanza " +
+                                                                 "Received: "
+                                                                 + packet);
+                                                         String
+                                                                 tempMessageString =
+                                                                 packet.toXML
+                                                                         ().toString();
+                                                         tempMessageString =
+                                                                 tempMessageString.split("<body>")[1];
+                                                         final
+                                                         String messageString
+                                                                 =
+                                                                 tempMessageString.split("</body>")[0];
+                                                         final Message message =
+                                                                 new Message
+                                                                         ("master@openfire", messageString);
+                                                         Log.d(TAG, "Got Some Message: " + message);
+                                                         if (userThreads.size() == 0) {
+                                                             return;
+                                                         }
+                                                         activity.runOnUiThread(new Runnable() {
+                                                             @Override
+                                                             public void run() {
+                                                                 MessageThread mainThread = userThreads.get(0);
+                                                                 SimpleDateFormat sdfL = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
+                                                                 final String currentDateandTimeLeft = sdfL.format(new Date());
+
+                                                                 Log.d(TAG, user_id);
+                                                                 com.jugaado.jugaado.models.Message add_message = new com.jugaado.jugaado.models.Message(message, currentDateandTimeLeft, user_id);
+                                                                 mainThread.receiveMessage(add_message);
+                                                                 dataBaseManager.addMessage(add_message);
+                                                                 for (RefreshListener listener : refreshListeners) {
+                                                                     listener.updateMessageThread(0, 0);
+                                                                 }
+                                                             }
+                                                         });
+                                                     }
+                                                 },
+                new StanzaFilter() {
+                    @Override
+                    public boolean accept(Stanza stanza) {
+                        String stanzaString = stanza.toXML().toString();
+                        if(stanzaString.contains("<body>")){
+                            return true;
                         }
+                        return false;
                     }
                 });
 
+        chat = chatManager.createChat("master@openfire", new
+                ChatMessageListener() {
+                    @Override
+                    public void processMessage(Chat chat, final Message message) {
+                        Log.d(TAG, "Got Some Message: " + message);
+                        if (userThreads.size() == 0) {
+                            return;
+                        }
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                MessageThread mainThread = userThreads.get(0);
+                                SimpleDateFormat sdfL = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
+                                final String currentDateandTimeLeft = sdfL.format(new Date());
+
+                                Log.d(TAG, user_id);
+                                com.jugaado.jugaado.models.Message add_message = new com.jugaado.jugaado.models.Message(message, currentDateandTimeLeft, user_id);
+                                mainThread.receiveMessage(add_message);
+                                dataBaseManager.addMessage(add_message);
+                                for (RefreshListener listener : refreshListeners) {
+                                    listener.updateMessageThread(0, 0);
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+        chat.addMessageListener(new ChatMessageListener() {
+            @Override
+            public void processMessage(Chat chat, Message message) {
+                Log.d(TAG, "From=" + message.getFrom());
+                Log.d(TAG, "To=" + message.getTo());
+                Log.d(TAG, "Body=" + message.getBody());
             }
         });
     }
+
+
 
     @SuppressLint("CommitPrefEdits")
     private boolean login(Activity activity, String user_name, String password){

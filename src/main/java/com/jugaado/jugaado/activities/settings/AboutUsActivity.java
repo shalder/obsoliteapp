@@ -17,6 +17,7 @@ public class AboutUsActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
+        loadOtherCustomActionBar();
         //showBackInActionBar();
     }
 }

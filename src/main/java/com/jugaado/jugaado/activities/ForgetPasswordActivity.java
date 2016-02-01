@@ -58,7 +58,7 @@ public class ForgetPasswordActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgetpassword);
-
+        loadOtherCustomActionBar();
 
         username_edittext = (EditText) findViewById(R.id.editText);
         username = username_edittext.getText().toString();

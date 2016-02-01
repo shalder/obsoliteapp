@@ -11,6 +11,7 @@ package com.jugaado.jugaado.activities;
         import android.graphics.drawable.Drawable;
         import android.os.Bundle;
         import android.os.StrictMode;
+        import android.support.v4.content.ContextCompat;
         import android.util.Log;
         import android.view.MotionEvent;
         import android.widget.Button;
@@ -65,7 +66,9 @@ public class CategoryActivity extends BaseActivity {
         fullName=(TextView)findViewById(R.id.textView6);
         loadUserName(mainUser);
 
-
+        ImageView cat_chat_separator = (ImageView)findViewById(R.id.cat_chat_separator);
+        Drawable catChatSeparatorDrawable = ContextCompat.getDrawable(this, R.drawable.cat_chat_separator_transparent);
+        cat_chat_separator.setImageDrawable(catChatSeparatorDrawable);
 
         ImageButton buttonCategory = (ImageButton) findViewById(R.id.category_button);
         buttonCategory.setEnabled(false);

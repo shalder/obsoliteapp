@@ -33,6 +33,14 @@ public class Message {
         this.message_way = message_way.MESSAGE_WAY_OUT;
     }
 
+    public Message(String message,boolean isCategoryMsg){
+        this.message = message;
+        if (isCategoryMsg)
+            this.message_way = message_way.MESSAGE_WAY_IN;
+        else
+            this.message_way = message_way.MESSAGE_WAY_OUT;
+    }
+
     public Message(JSONObject object){
         this.message_id = Integer.parseInt(object.optString("message_id", "0"));
         this.message = object.optString("message", "");

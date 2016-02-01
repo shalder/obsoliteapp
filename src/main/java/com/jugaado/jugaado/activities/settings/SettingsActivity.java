@@ -38,7 +38,8 @@ public class SettingsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        showBackInActionBar();
+        loadOtherCustomActionBar();
+        //showBackInActionBar();
 
         findViewById(R.id.settings_about_text_view).setOnClickListener(new View.OnClickListener() {
             @Override

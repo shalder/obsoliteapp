@@ -76,7 +76,39 @@ public class BaseActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    protected void loadOtherCustomActionBar(){
+        ActionBar mActionBar = getSupportActionBar();
+        assert mActionBar != null;
+        mActionBar.setDisplayShowHomeEnabled(false);
+        mActionBar.setDisplayShowTitleEnabled(false);
 
+        LayoutInflater mInflater = LayoutInflater.from(this);
+
+        View mCustomView = mInflater.inflate(R.layout.other_custom_action_bar, null);
+
+
+        ImageView backImageView = (ImageView) mCustomView.findViewById(R.id.action_button_back);
+        backImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
+
+
+        mActionBar.setCustomView(mCustomView);
+        mActionBar.setDisplayShowCustomEnabled(true);
+
+
+        Toolbar parent =(Toolbar) mCustomView.getParent();
+
+
+
+        parent.setContentInsetsAbsolute(0, 0);
+    }
     protected void loadCustomActionBar(){
         ActionBar mActionBar = getSupportActionBar();
         assert mActionBar != null;

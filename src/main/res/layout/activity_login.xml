@@ -27,7 +27,7 @@
         android:paddingBottom="5dp">
         <EditText
             android:id="@+id/login_user_name"
-            android:layout_width="264dp"
+            android:layout_width="260dp"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:hint="@string/placeholder_username"
@@ -42,7 +42,7 @@
         <EditText
             android:layout_marginTop="30dp"
             android:id="@+id/login_password"
-            android:layout_width="264dp"
+            android:layout_width="260dp"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:hint="@string/placeholder_password"

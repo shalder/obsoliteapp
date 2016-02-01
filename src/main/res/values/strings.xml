@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Jugaado</string>
     <string name="action_settings">Settings</string>
+    <string name="action_edit">Edit</string>
     <string name="title_thread_list">Threads</string>
     <string name="title_thread_detail">Thread Detail</string>
     <string name="placeholder_username">User Name</string>
@@ -27,6 +28,7 @@
     <string name="title_activity_profile">Profile</string>
     <string name="title_about_us">About Us</string>
     <string name="action_profile">Profile</string>
+    <string name="action_back">Back</string>
     <string name="edit">Edit</string>
     <string name="title_activity_category">Category</string>
     <string name="username_txt_forgetpassword">To Retrieve Your Password, Enter Your UserName</string>
@@ -40,4 +42,5 @@
     <string name="about_us_desc"></string>
     <string name="serverside_error">Experiencing ServerSide Error, Try after some time</string>
     <string name="forgot_password_response_txt">We have emailed you the Password Reset Details to  your registered Email ID. \n \n PS - If you do not see the email in your inbox, please check your spam folder. Email questions to admin@jugaado.in</string>
+    <string name="form_heading">Please Provide the following details</string>
 </resources>

@@ -6,8 +6,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,6 +67,17 @@ public class ProfileActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        loadOtherCustomActionBar();
+        final ImageView editImageView = (ImageView)findViewById(R.id.action_button_edit);
+        editImageView.setVisibility(View.VISIBLE);
+        editImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setEditing(true);
+                editImageView.setVisibility(View.INVISIBLE);
+            }
+        });
+
         // Loading Static TextViews
         static_text_views = new TextView[5];
         static_text_views[0] = full_name_text_view = (TextView) findViewById(R.id.profile_name_text_view);
@@ -86,6 +99,7 @@ public class ProfileActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 saveDetails();
+                editImageView.setVisibility(View.VISIBLE);
             }
         });
 
@@ -170,7 +184,7 @@ public class ProfileActivity extends BaseActivity {
             }
         });
     }
-
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         boolean retValue = super.onCreateOptionsMenu(menu);
@@ -184,7 +198,8 @@ public class ProfileActivity extends BaseActivity {
             setEditing(true);
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
+
     public void onClickChat_category(View v){
         Intent intent = new Intent(ProfileActivity.this, CategoryActivity.class);
         startActivity(intent);

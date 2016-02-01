@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -29,7 +31,12 @@ import com.jugaado.jugaado.models.MessageThread;
 import com.jugaado.jugaado.notifications.RefreshListener;
 import com.jugaado.jugaado.utils.Helper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MessagingActivity extends BaseActivity implements RefreshListener {
     public static final String TAG = "Messaging Activity";
@@ -57,6 +64,13 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
 
         ImageButton buttonChat=(ImageButton)findViewById(R.id.chat_button);
         buttonChat.setEnabled(false);
+
+        ImageView cat_chat_separator = (ImageView)findViewById(R.id.cat_chat_separator);
+
+
+        Drawable catChatSeparatorDrawable = ContextCompat.getDrawable(this, R.drawable.cat_chat_separator_transparent);
+        cat_chat_separator.setImageDrawable(catChatSeparatorDrawable);
+
 
         RelativeLayout chat_icon_layout = (RelativeLayout)findViewById(R.id.chat_icon_layout);
         chat_icon_layout.setBackgroundResource(R.color.gainsboro);
@@ -112,7 +126,7 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
         sendButton.setEnabled(false);
         if(!chatcategory.equals("test")) {
             loadMessages();
-            sendMessage(chatcategory);
+            sendMessage(chatcategory,true);
         }
     }
 
@@ -132,10 +146,17 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
-    private void sendMessage(String text) {
+
+    public void sendMessage(String text) {
+        sendMessage(text,false);
+    }
+    private void sendMessage(String text, boolean isCategoryMsg) {
         if(isInternetAvailable()) {
             text = text.trim();
-            final Message message = new Message(text);
+            final Message message;
+
+            if (isCategoryMsg) message = new Message(text,true);
+               else  message = new Message(text);
             messagingAdapter.notifyDataSetChanged();
             messageThread.sendMessage(this, message, new EventCallback() {
                 @Override
@@ -193,6 +214,21 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
     public void onClickChat_category(View v){
         Intent intent = new Intent(MessagingActivity.this, CategoryActivity.class);
         startActivity(intent);
+    }
+
+    public boolean isJSONValid(String test) {
+        try {
+            new JSONObject(test);
+        } catch (JSONException ex) {
+            // edited, to include @Arthur's comment
+            // e.g. in case JSONArray is valid as well...
+            try {
+                new JSONArray(test);
+            } catch (JSONException ex1) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

@@ -12,7 +12,7 @@ tools:context=".activities.settings.AboutUsActivity">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Jugaado is an intelligent assistant that helps you get things done, provided it is legal. Jugaado's knowledge navigator facilitates any kind of service with information from foremost hyperlocal directories. \nFor more information visit -> jugaado.in"
             android:id="@+id/textView8"
             android:textColor="@color/black"
