@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,7 +26,9 @@ import android.view.ViewGroup.LayoutParams;
 import com.jugaado.jugaado.R;
 import com.jugaado.jugaado.activities.auth.LoginActivity;
 import com.jugaado.jugaado.activities.base.BaseActivity;
+import com.jugaado.jugaado.manager.DataBaseManager;
 import com.jugaado.jugaado.utils.Helper;
+import com.jugaado.jugaado.utils.HelperConfig;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -57,6 +60,20 @@ public class ForgetPasswordActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*float configAppVersion = getIntent().getExtras().getFloat("configAppVersion");
+        float configReloadAppVersion = getIntent().getExtras().getFloat("configReloadAppVersion");
+        String playStoreURL = getIntent().getExtras().getString("playStoreURL");
+
+        if (configAppVersion!=configReloadAppVersion) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(playStoreURL));
+            startActivity(browserIntent);
+
+            Toast.makeText(ForgetPasswordActivity.this, "Please Upgrade to the latest app.", Toast.LENGTH_LONG).show();
+
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }*/
+
         setContentView(R.layout.activity_forgetpassword);
         loadOtherCustomActionBar();
 
@@ -78,7 +95,17 @@ public class ForgetPasswordActivity extends BaseActivity {
                             //Your code goes here
                             username_edittext = (EditText) findViewById(R.id.editText);
                             username = username_edittext.getText().toString();
-                            forgetPasswordURL = Helper.FORGET_PWD_URL + username;
+
+                            DataBaseManager dataBaseManager = new DataBaseManager(ForgetPasswordActivity.this);
+
+                            HelperConfig helperConfig = null;
+
+                            try {
+                                helperConfig = dataBaseManager.getConfig();
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                            forgetPasswordURL = helperConfig.getFORGET_PWD_URL() + username;
                             Log.d(TAG, forgetPasswordURL);
                             //URL url = new URL(forgetPasswordURL);
                             HttpClient httpclient;
@@ -96,7 +123,7 @@ public class ForgetPasswordActivity extends BaseActivity {
                             ResponseHandler<String> responseHandler = new BasicResponseHandler();
                             responseBody = httpclient.execute(httppost, responseHandler);
 
-                            System.out.println("responseBody : " + responseBody);
+                            Log.d(TAG, "responseBody : " + responseBody);
 
                             ForgetPasswordActivity.this.runOnUiThread(new Runnable() {
                                 public void run() {
@@ -108,7 +135,7 @@ public class ForgetPasswordActivity extends BaseActivity {
                             final Runnable run = new Runnable() {
                                 public void run() {
                                     //do your stuff here after DELAY m.sec
-                                    Intent intent = new Intent(ForgetPasswordActivity.this,LoginActivity.class);
+                                    Intent intent = new Intent(ForgetPasswordActivity.this,SplashActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }

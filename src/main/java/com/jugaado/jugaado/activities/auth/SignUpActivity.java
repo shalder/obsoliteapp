@@ -3,6 +3,7 @@ package com.jugaado.jugaado.activities.auth;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jugaado.jugaado.R;
 import com.jugaado.jugaado.activities.CategoryActivity;
@@ -45,6 +47,20 @@ public class SignUpActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*float configAppVersion = getIntent().getExtras().getFloat("configAppVersion");
+        float configReloadAppVersion = getIntent().getExtras().getFloat("configReloadAppVersion");
+        String playStoreURL = getIntent().getExtras().getString("playStoreURL");
+
+        if (configAppVersion!=configReloadAppVersion) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(playStoreURL));
+            startActivity(browserIntent);
+
+            Toast.makeText(SignUpActivity.this, "Please Upgrade to the latest app.", Toast.LENGTH_LONG).show();
+
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }*/
+
         setContentView(R.layout.activity_sign_up);
         loadOtherCustomActionBar();
         nameEditText = (EditText) findViewById(R.id.signup_name_edittext);

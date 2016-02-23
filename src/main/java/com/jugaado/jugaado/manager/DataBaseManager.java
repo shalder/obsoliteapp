@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.jugaado.jugaado.activities.auth.LoginActivity;
 import com.jugaado.jugaado.models.Message;
+import com.jugaado.jugaado.utils.HelperConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +46,23 @@ public class DataBaseManager extends SQLiteOpenHelper {
 
     String userid;
 
+
+
+    // All Static variables
+
+    // Helper table name
+    private static final String TABLE_HELPER = "HelperTable";
+
+    // Helper Table Columns names
+    private static final String ID = "id";
+    private static final String CONFIG_APP_VERSION = "configAppVersion";
+    private static final String HOST = "HOST";
+    private static final String PORT = "PORT";
+    private static final String HOST_USER_NAME = "HOST_USER_NAME";
+    private static final String HOST_PWD  = "HOST_PWD ";
+    private static final String FORGET_PWD_URL = "FORGET_PWD_URL";
+
+
     public DataBaseManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -55,12 +73,32 @@ public class DataBaseManager extends SQLiteOpenHelper {
                 + MESSAGE_ID + " INTEGER PRIMARY KEY," + MESSAGE_MESSAGE + " TEXT,"
                 + MESSAGE_WAY + " TEXT," + MESSAGE_DATENTIME +" TEXT,"+ USER_ID + " TEXT)";
         db.execSQL(CREATE_CONTACTS_TABLE);
+
+        String CREATE_HELPER_TABLE = "CREATE TABLE " + TABLE_HELPER + "("
+                + CONFIG_APP_VERSION + " INTEGER PRIMARY KEY," + HOST + " TEXT,"
+                + PORT + " TEXT," + HOST_USER_NAME + " TEXT," + HOST_PWD + " TEXT," + FORGET_PWD_URL + " TEXT)";
+
+        Log.d(TAG, CREATE_HELPER_TABLE);
+        db.execSQL(CREATE_HELPER_TABLE);
+
+        /*//default row creation
+        ContentValues values = new ContentValues();
+        values.put(CONFIG_APP_VERSION, 1);
+        values.put(HOST, "52.26.15.67");
+        values.put(PORT, "5222");
+        values.put(HOST_USER_NAME, "asdf");
+        values.put(HOST_PWD, "asdf");
+        values.put(FORGET_PWD_URL, "http://www.jugaado.in/sendverifycode.php?username=");
+        db.insert(TABLE_HELPER, null, values);
+        System.out.println("default row values--"+values);*/
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HELPER);
 
         // Create tables again
         onCreate(db);
@@ -171,6 +209,60 @@ public class DataBaseManager extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
+
+    public void addHelperConfig(HelperConfig helperConfig) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        addHelperConfig(db, helperConfig);
+
+    }
+
+    public void addHelperConfig(SQLiteDatabase db, HelperConfig helperConfig) {
+
+        //
+        //String delete = "DELETE FROM "+TABLE_HELPER;
+        //db.rawQuery(delete, null);
+
+        ContentValues values = new ContentValues();
+        values.put(CONFIG_APP_VERSION, helperConfig.getConfigAppVersion()); // Contact Name
+        values.put(HOST, helperConfig.getHOST()); // Contact Phone Number
+        values.put(PORT, helperConfig.getPORT());
+        values.put(HOST_USER_NAME, helperConfig.getHOST_USER_NAME());
+        values.put(HOST_PWD, helperConfig.getHOST_PWD());
+        values.put(FORGET_PWD_URL, helperConfig.getFORGET_PWD_URL());
+        Log.d(TAG, "HOST-" + helperConfig.getHOST());
+        Log.d(TAG, "PORT-" + helperConfig.getPORT());
+        //deleting Previous one
+        db.delete(TABLE_HELPER,null,null);//db.execSQL("DELETE TABLE IF EXISTS " + TABLE_HELPER);
+        // Inserting Row
+        db.insertOrThrow(TABLE_HELPER, null, values);
+        db.close(); // Closing database connection
+    }
+
+
+    public HelperConfig getConfig() throws Exception {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query( TABLE_HELPER, new String[] {CONFIG_APP_VERSION,HOST,PORT,HOST_USER_NAME,HOST_PWD,FORGET_PWD_URL}, null, null, null, null ,null,"1");
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        if (cursor != null) {
+
+            //Log.d("TAG", "Get msg - " + cursor.getString(1));
+
+            HelperConfig helperConfig = new HelperConfig( Float.parseFloat(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+
+            cursor.close();
+
+            return helperConfig;
+        }
+        else {
+            throw new Exception();
+        }
+
+    }
+
     public void setUserId(String userid){
         this.userid=userid;
     }

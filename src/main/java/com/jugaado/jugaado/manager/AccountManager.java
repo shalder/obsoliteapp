@@ -8,12 +8,14 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.jugaado.jugaado.R;
+import com.jugaado.jugaado.activities.SplashActivity;
 import com.jugaado.jugaado.activities.auth.LoginActivity;
 import com.jugaado.jugaado.data.EventCallback;
 import com.jugaado.jugaado.models.MessageThread;
 import com.jugaado.jugaado.models.User;
 import com.jugaado.jugaado.notifications.RefreshListener;
 import com.jugaado.jugaado.utils.Helper;
+import com.jugaado.jugaado.utils.HelperConfig;
 
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.MessageListener;
@@ -70,6 +72,8 @@ public class AccountManager {
     ChatManager chatManager;
     Chat chat;
 
+    Helper helper;
+
     /**
      * Static method to get instance of the AccountManager;
      * @return Returns a sharedInstance
@@ -84,6 +88,10 @@ public class AccountManager {
         return sharedInstance;
     }
 
+    public void createHelper(final Activity activity, HelperConfig helperConfig) {
+        helper = new Helper(helperConfig);
+    }
+
     public void loadXMPP(final Activity activity, final EventCallback callback) {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -94,10 +102,10 @@ public class AccountManager {
                             xmpptcpConnection.disconnect();
                         }
                         xmpptcpConnectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-                                .setServiceName(Helper.HOST)
-                                .setHost(Helper.HOST)
-                                .setPort(Helper.PORT)
-                                .setUsernameAndPassword(Helper.HOST_USER_NAME, Helper.HOST_PWD)
+                                .setServiceName(helper.HOST)
+                                .setHost(helper.HOST)
+                                .setPort(helper.PORT)
+                                .setUsernameAndPassword(helper.HOST_USER_NAME, helper.HOST_PWD)
                                 .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
                                 .setSendPresence(true)
                                 .build();
@@ -258,7 +266,7 @@ public class AccountManager {
                     }
                 });
 
-        chat = chatManager.createChat("master@openfire", new
+                chat = chatManager.createChat("master@openfire", new
                 ChatMessageListener() {
                     @Override
                     public void processMessage(Chat chat, final Message message) {
@@ -381,7 +389,7 @@ public class AccountManager {
 
                     SASLAuthentication.unBlacklistSASLMechanism("PLAIN");
                     SASLAuthentication.blacklistSASLMechanism("DIGEST-MD5");
-                    xmpptcpConnection.login(Helper.HOST_USER_NAME, Helper.HOST_PWD);
+                    xmpptcpConnection.login(helper.HOST_USER_NAME, helper.HOST_PWD);
 
                     org.jivesoftware.smackx.iqregister.AccountManager accountManager = org.jivesoftware.smackx.iqregister.AccountManager.getInstance(xmpptcpConnection);
 
@@ -463,7 +471,7 @@ public class AccountManager {
             @Override
             public void run() {
                 try {
-                    Message newMessage = new Message("master@"+Helper.HOST, message.getMessage());
+                    Message newMessage = new Message("master@"+helper.HOST, message.getMessage());
                     chat.sendMessage(newMessage);
 
                     SimpleDateFormat sdfR = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
@@ -488,6 +496,12 @@ public class AccountManager {
                             eventCallback.onError(new JSONObject(), activity.getString(R.string.NO_INTERNET_CONNECTION_ERROR));
                         }
                     });
+
+                    userThreads.clear();
+
+                    Intent intent = new Intent(activity, SplashActivity.class);
+                    activity.startActivity(intent);
+
                 }
             }
         });

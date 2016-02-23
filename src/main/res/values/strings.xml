@@ -35,7 +35,7 @@
     <string name="continue_button">Continue</string>
     <string name="title_activity_forgotPassword">Forgot Password</string>
     <string name="termsncondition_title">Terms &amp; Condition</string>
-    <string name="termsncondition_txt">TERMS of Services</string>
+    <string name="termsncondition_txt">Terms of Services</string>
     <string name="termsncondition_description">Please read the following terms and conditions carefully before registering, accessing, browsing, downloading or using the Site (defined below). By accessing or using the Site or by using the Service (defined below), you agree to be bound by these terms and conditions set forth below including any additional guidelines and future modifications. If at any time you do not agree to these terms and conditions or do not wish to be bound by these terms and conditions, you may not access or use the site and immediately terminate your use of the services.</string>
     <string name="agreement_to_tnc">cscs</string>
     <string name="about_us_text">About Us</string>

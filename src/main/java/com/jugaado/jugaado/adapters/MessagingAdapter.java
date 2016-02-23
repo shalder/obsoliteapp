@@ -1,11 +1,8 @@
 package com.jugaado.jugaado.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.format.Time;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jugaado.jugaado.R;
 import com.jugaado.jugaado.activities.MessagingActivity;
-import com.jugaado.jugaado.data.EventCallback;
 import com.jugaado.jugaado.models.Message;
 import com.jugaado.jugaado.models.MessageThread;
-import com.jugaado.jugaado.utils.Helper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -127,8 +121,6 @@ public class MessagingAdapter extends ArrayAdapter {
                         } //for example
                         i++;
                     }
-                    System.out.println(keys);
-                    System.out.println(values);
 
                      if(keys.get(0).equals("type") && values.get(0).equals("button")){
                          buttonLink = values.get(1).toString();
