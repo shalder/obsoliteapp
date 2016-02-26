@@ -1,8 +1,11 @@
 package com.jugaado.jugaado.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -68,8 +71,13 @@ public class SplashActivity extends BaseActivity {
         findViewById(R.id.splash_retry_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadConfig();
-                tryLogin();
+                if(isInternetAvailable(v.getContext())) {
+                    loadConfig();
+                    tryLogin();
+                }
+                else{
+                    showError();
+                }
             }
         });
         if (getSupportActionBar() != null){
@@ -90,8 +98,13 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadConfig();
-        tryLogin();
+        if(isInternetAvailable(this.getApplicationContext())) {
+            loadConfig();
+            tryLogin();
+        }
+        else{
+            showError();
+        }
     }
 
     @Override
@@ -156,36 +169,39 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void loadConfig() {
-        HttpClient client = new DefaultHttpClient();
+        if(!isInternetAvailable(this.getApplicationContext()))
+            showError();
+        else {
+            HttpClient client = new DefaultHttpClient();
 
-        try {
+            try {
 
-            int SDK_INT = android.os.Build.VERSION.SDK_INT;
-            if (SDK_INT > 8)
-            {
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                        .permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-                //your codes here
+                int SDK_INT = android.os.Build.VERSION.SDK_INT;
+                if (SDK_INT > 8) {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                            .permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+                    //your codes here
 
+                }
+
+                HttpGet request = new HttpGet(Helper.CONFIGURL);
+
+                HttpResponse response = client.execute(request);
+
+                // Get the response
+                BufferedReader rd = new BufferedReader
+                        (new InputStreamReader(response.getEntity().getContent()));
+
+                String line = "", fulldata = "";
+                while ((line = rd.readLine()) != null) {
+                    fulldata += line;
+                }
+                checkConfig(fulldata);
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            HttpGet request = new HttpGet(Helper.CONFIGURL);
-
-            HttpResponse response = client.execute(request);
-
-            // Get the response
-            BufferedReader rd = new BufferedReader
-                    (new InputStreamReader(response.getEntity().getContent()));
-
-            String line = "", fulldata = "";
-            while ((line = rd.readLine()) != null) {
-                fulldata += line;
-            }
-            checkConfig(fulldata);
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -360,5 +376,23 @@ public class SplashActivity extends BaseActivity {
             e.printStackTrace();
         }
         return helperConfig;
+    }
+
+    public boolean isInternetAvailable(Context context) {
+        try{
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+            if(activeNetworkInfo.isConnected())
+            {
+                return true;
+            }
+        }
+        catch(Exception e){
+            Log.d(TAG, "CheckConnectivity Exception: " + e.getMessage());
+        }
+
+        return false;
+
     }
 }

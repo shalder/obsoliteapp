@@ -3,6 +3,7 @@ package com.jugaado.jugaado.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +37,9 @@ public class MessagingAdapter extends ArrayAdapter {
     String buttonLink,buttonText;
     String iconValue1,fieldValue1,iconValue2,fieldValue2,iconValue3,fieldValue3;
     private MessageThread messageThread;
-    ArrayList<CharSequence> keys = new ArrayList<CharSequence>();
-    ArrayList<CharSequence> values = new ArrayList<CharSequence>();
     private ArrayList<Message> messageArrayList = new ArrayList<>();
     Context mContext;
-
+    String TAG = "MessagingAdapter";
 
     public MessagingAdapter(Context context, int resource, List objects) {
         super(context, resource, objects);
@@ -105,49 +104,37 @@ public class MessagingAdapter extends ArrayAdapter {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Iterator itrOuter = obj.keys();
 
+                    try {
+                        if(obj.getString("type").equalsIgnoreCase("button")){
+                            buttonLink = obj.getString("link");
+                            buttonText = obj.getString("text");
+                            Log.d(TAG, "button is detected");
+                            formLayout.setVisibility(View.INVISIBLE);
+                            leftTextView.setVisibility(View.INVISIBLE);
+                            leftButton.setVisibility(View.VISIBLE);
+                            leftButton.setText(buttonText);
+                            leftButton.setOnClickListener(new View.OnClickListener() {
+                               @Override
+                               public void onClick(View view) {
+                                   if (!buttonLink.startsWith("http://") && !buttonLink.startsWith("https://")) {
+                                       buttonLink = "http://" + buttonLink;
+                                   }
+                                   Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(buttonLink));
+                                   view.getContext().startActivity(browserIntent);
+                               }
 
-                    int i = 0;
-                    while(itrOuter.hasNext()) {
-                        String key = itrOuter.next().toString();
+                           });
+                        }
 
-                        try {
-                            keys.add(i,key);
-                            values.add(i, (CharSequence) obj.getString(key));
-                        } catch (JSONException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        } //for example
-                        i++;
-                    }
-
-                     if(keys.get(0).equals("type") && values.get(0).equals("button")){
-                         buttonLink = values.get(1).toString();
-                         buttonText = values.get(2).toString();
-                         formLayout.setVisibility(View.INVISIBLE);
-                         leftTextView.setVisibility(View.INVISIBLE);
-                         leftButton.setVisibility(View.VISIBLE);
-                         leftButton.setText(buttonText);
-                         leftButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if (!buttonLink.startsWith("http://") && !buttonLink.startsWith("https://")) {
-                                    buttonLink = "http://" + buttonLink;
-                                }
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(buttonLink));
-                                view.getContext().startActivity(browserIntent);
-                            }
-
-                        });
-                     }
-                    if(keys.get(0).equals("type") && values.get(0).equals("form")){
-                        iconValue1= values.get(1).toString();
-                        fieldValue1= values.get(2).toString();
-                        iconValue2= values.get(3).toString();
-                        fieldValue2= values.get(4).toString();
-                        iconValue3= values.get(5).toString();
-                        fieldValue3= values.get(6).toString();
+                    if(obj.getString("type").equalsIgnoreCase("form")){
+                        iconValue1=obj.getString("icon1");
+                        fieldValue1=obj.getString("field1");
+                        iconValue2=obj.getString("icon2");
+                        fieldValue2=obj.getString("field2");
+                        iconValue3=obj.getString("icon3");
+                        fieldValue3=obj.getString("field3");
+                        Log.d(TAG, "enquiry form is detected");
                         leftContainer.setVisibility(View.INVISIBLE);
                         formLayout.setVisibility(View.VISIBLE);
                         field1.setHint(fieldValue1);
@@ -166,7 +153,9 @@ public class MessagingAdapter extends ArrayAdapter {
                             }
 
                         });                   }
-
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else {
                     formLayout.setVisibility(View.GONE);

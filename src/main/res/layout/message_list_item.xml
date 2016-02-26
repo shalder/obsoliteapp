@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content" >
 
     <LinearLayout
         android:id="@+id/message_left_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="50dp"
         android:background="@drawable/bubble_b"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1.0"
-        android:orientation="vertical">
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true">
 
             <TextView
                 android:id="@+id/message_left_text_view"
@@ -20,25 +20,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:text="Left"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_above="@+id/datetimeLtextView"
                 android:visibility="visible"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Date n Time(L)"
-            android:textSize="12sp"
-            android:id="@+id/datetimeLtextView"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"/>
 
         <Button
                 android:id="@+id/message_left_button"
@@ -46,60 +32,30 @@
                 android:layout_height="25dp"
                 android:textColor="@color/black"
                 android:text="Button"
-                android:textAllCaps="false"
-                android:background="@drawable/lightgreywhite_button_background"
-                android:layout_marginLeft="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:visibility="gone"
-                android:layout_above="@+id/datetimeLtextView"
-                android:layout_alignBottom="@+id/message_left_text_view"
-                android:layout_alignLeft="@+id/datetimeLtextView"/>
+                android:background="@drawable/lightgreywhite_button_background"
+                android:layout_above="@+id/datetimeLtextView"/>
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/message_right_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bubble_a"
-        android:layout_marginLeft="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:visibility="visible"
-        android:layout_weight="1.0"
-        android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/message_right_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Right"
-                android:gravity="right"
-                android:textColor="@color/black"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_above="@+id/datetimeRtextView"
-                />
-
-            <TextView
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Date n Time(R)"
+                android:text="Date n Time(L)"
                 android:textSize="12sp"
+                android:id="@+id/datetimeLtextView"
                 android:textColor="@color/black"
-                android:id="@+id/datetimeRtextView"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                />
+                android:layout_alignParentLeft="true"/>
 
     </LinearLayout>
+
+
     <LinearLayout
         android:orientation="vertical" android:layout_width="250dp"
         android:layout_height="175dp"
@@ -166,4 +122,47 @@
             android:layout_marginTop="5dp"/>
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/message_right_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bubble_a"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:gravity="right">
+
+            <TextView
+                android:id="@+id/message_right_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Right"
+                android:gravity="right"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_above="@+id/datetimeRtextView"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Date n Time(R)"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:id="@+id/datetimeRtextView"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -51,8 +51,6 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
     private LinearLayout messageEmptyContainer;
     private TextView chat_description;
     String chatcategory;
-    ConnectivityManager connectivityManager;
-    NetworkInfo activeNetworkInfo;
 
 
     @Override
@@ -148,8 +146,8 @@ public class MessagingActivity extends BaseActivity implements RefreshListener {
         //ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         //return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
         try{
-            connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
             if(activeNetworkInfo.isConnected())
             {
