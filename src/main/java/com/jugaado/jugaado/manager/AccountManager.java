@@ -17,6 +17,7 @@ import com.jugaado.jugaado.notifications.RefreshListener;
 import com.jugaado.jugaado.utils.Helper;
 import com.jugaado.jugaado.utils.HelperConfig;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.PacketCollector;
@@ -232,7 +233,7 @@ public class AccountManager {
                                                                  tempMessageString.split("</body>")[0];
                                                          final Message message =
                                                                  new Message
-                                                                         ("master@openfire", messageString);
+                                                                         ("master@openfire", StringEscapeUtils.unescapeHtml(messageString));
                                                          Log.d(TAG, "Got Some Message: " + message);
                                                          if (userThreads.size() == 0) {
                                                              return;

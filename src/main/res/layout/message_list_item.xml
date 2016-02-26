@@ -11,7 +11,7 @@
         android:paddingBottom="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="40dp"
         android:orientation="vertical"
         android:layout_alignParentLeft="true">
 
@@ -58,11 +58,15 @@
 
 
     <LinearLayout
-        android:orientation="vertical" android:layout_width="250dp"
+        android:orientation="vertical"
+        android:layout_width="300dp"
         android:layout_height="175dp"
         android:background="@drawable/enquiry_form_background"
         android:id="@+id/form_linearLayout"
-        android:layout_marginLeft="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:visibility="gone">
 
         <TextView
@@ -75,8 +79,8 @@
 
         <EditText
             android:id="@+id/form_field1"
-            android:layout_width="fill_parent"
-            android:layout_height="25dp"
+            android:layout_width="275dp"
+            android:layout_height="30dp"
             android:hint="Category"
             android:gravity="center"
             android:inputType="text"
@@ -84,12 +88,13 @@
             android:drawableLeft="@drawable/form_food"
             android:layout_marginTop="5dp"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true"
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/form_field2"
-            android:layout_width="fill_parent"
-            android:layout_height="25dp"
+            android:layout_width="275dp"
+            android:layout_height="30dp"
             android:hint="Preferred Location"
             android:gravity="center"
             android:inputType="text"
@@ -97,12 +102,13 @@
             android:drawableLeft="@drawable/form_food"
             android:layout_marginTop="5dp"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true"
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/form_field3"
-            android:layout_width="fill_parent"
-            android:layout_height="25dp"
+            android:layout_width="275dp"
+            android:layout_height="30dp"
             android:hint="Preferred Location"
             android:gravity="center"
             android:inputType="text"
@@ -110,11 +116,12 @@
             android:drawableLeft="@drawable/form_food"
             android:layout_marginTop="5dp"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true"
+            android:layout_gravity="center"/>
         <Button
             android:id="@+id/form_send_button"
             android:layout_width="50dp"
-            android:layout_height="25dp"
+            android:layout_height="30dp"
             android:background="@color/transparent"
             android:text="send"
             android:textColor="@color/blue"
@@ -132,7 +139,7 @@
         android:paddingBottom="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="40dp"
         android:orientation="vertical"
         android:layout_alignParentRight="true"
         android:gravity="right">

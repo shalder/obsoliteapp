@@ -86,18 +86,19 @@ public class MessagingAdapter extends ArrayAdapter {
         LinearLayout leftContainer = (LinearLayout) row.findViewById(R.id.message_left_container);
         TextView leftTextView = (TextView) row.findViewById(R.id.message_left_text_view);
         TextView datentimeL=(TextView)row.findViewById(R.id.datetimeLtextView);
+
         Button leftButton=(Button)row.findViewById(R.id.message_left_button);
 
         final LinearLayout formLayout = (LinearLayout) row.findViewById(R.id.form_linearLayout);
         final EditText field1 =(EditText)row.findViewById(R.id.form_field1);
         final EditText field2 =(EditText)row.findViewById(R.id.form_field2);
         final EditText field3 =(EditText)row.findViewById(R.id.form_field3);
-        Button sendForm = (Button)row.findViewById(R.id.form_send_button);
+        final Button sendForm = (Button)row.findViewById(R.id.form_send_button);
         switch (chatMessageObj.getMessage_way()){
             case MESSAGE_WAY_IN:
                 rightContainer.setVisibility(View.GONE);
                 rightTextView.setText("");
-                leftContainer.setVisibility(View.VISIBLE);
+
                 if(isJSONValid(chatMessageObj.getMessage())){
                     try {
                         obj = new JSONObject(chatMessageObj.getMessage());
@@ -110,8 +111,9 @@ public class MessagingAdapter extends ArrayAdapter {
                             buttonLink = obj.getString("link");
                             buttonText = obj.getString("text");
                             Log.d(TAG, "button is detected");
-                            formLayout.setVisibility(View.INVISIBLE);
-                            leftTextView.setVisibility(View.INVISIBLE);
+                            leftContainer.setVisibility(View.VISIBLE);
+                            formLayout.setVisibility(View.GONE);
+                            leftTextView.setVisibility(View.GONE);
                             leftButton.setVisibility(View.VISIBLE);
                             leftButton.setText(buttonText);
                             leftButton.setOnClickListener(new View.OnClickListener() {
@@ -135,7 +137,7 @@ public class MessagingAdapter extends ArrayAdapter {
                         iconValue3=obj.getString("icon3");
                         fieldValue3=obj.getString("field3");
                         Log.d(TAG, "enquiry form is detected");
-                        leftContainer.setVisibility(View.INVISIBLE);
+                        leftContainer.setVisibility(View.GONE);
                         formLayout.setVisibility(View.VISIBLE);
                         field1.setHint(fieldValue1);
                         field2.setHint(fieldValue2);
@@ -144,10 +146,12 @@ public class MessagingAdapter extends ArrayAdapter {
                         sendForm.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                formLayout.setVisibility(View.GONE);
                                 //((MessagingAdapter) view.getContext()).function();
                                 if(mContext instanceof MessagingActivity){
-                                    ((MessagingActivity)mContext).sendMessage(fieldValue1+": "+field1.getText()+"\n"+fieldValue2+": "+field2.getText()+"\n"+fieldValue3+": "+field3.getText());
-                                    formLayout.setVisibility(View.GONE);
+
+                                    ((MessagingActivity)mContext).sendMessage(fieldValue1 + ": " + field1.getText() + "\n" + fieldValue2 + ": " + field2.getText() + "\n" + fieldValue3 + ": " + field3.getText());
+
                                 }
 
                             }
@@ -172,6 +176,7 @@ public class MessagingAdapter extends ArrayAdapter {
             case MESSAGE_WAY_OUT:
                 leftContainer.setVisibility(View.GONE);
                 leftTextView.setText("");
+                formLayout.setVisibility(View.GONE);
                 rightContainer.setVisibility(View.VISIBLE);
                 rightTextView.setText(chatMessageObj.getMessage());
                 SimpleDateFormat sdfR = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
